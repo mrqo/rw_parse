@@ -18,6 +18,10 @@ int main()
 	newramp2->serialize();
 	newramp2->printFileStructure();
 
+	std::vector<Vec3<float> > vec = LODroad15->getVertexInformation();
+	for (int i = 0; i < vec.size(); i++) {
+		std::cout << vec[i].x << " " << vec[i].y << " " << vec[i].z << std::endl;
+	}
 	system("PAUSE");
 	delete LODroad15;
 	delete newramp2;

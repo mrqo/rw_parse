@@ -13,10 +13,13 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
+#include "basic_types.h"
 #include "rw_utils.h"
 #include "rw_dff_structure.h"
 #include "rw_file.h"
+
 
 class RwDff : public RwFile {
 public:
@@ -24,6 +27,11 @@ public:
 	~RwDff();
 	void			serialize();
 	void			printFileStructure();
+	std::vector<Vec3<float> >		getVertexInformation();
+	std::vector<Vec3PlusFlag<int> > getFaceInformation();
+	std::vector<Vec2<int> >			getTextureMappingInformation();
+	std::vector<Vec3<float> >		getNormalInformation();
+	std::vector<ColorRGBA>			getColorInformation();
 private:
 	RwClump*		clumps;
 	

@@ -349,6 +349,7 @@ void RwUtils::printTextureData(RwTextureData &td, int level) {
 
 void RwUtils::printStringData(RwString &str, int level) {
 	printBracet(ioOPEN, level++);
-	printStringVariable("text", str.text, level);
+	char* text = (char*)(str.text.c_str());
+	printStringVariable("text", text, level);
 	printBracet(ioCLOSE, --level);
 }

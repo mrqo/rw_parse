@@ -141,6 +141,30 @@ void RwDff::printFileStructure() {
 	RwUtils::printVoidStructure(level);
 }
 
+std::vector<Vec3<float> >	RwDff::getVertexInformation() {
+	std::vector<Vec3<float> > vec;
+	for (int i = 0; i < this->clumps[0].geometryList.geometries[0].data.dataHeader.vertexCount; i++) {
+		float x = clumps[0].geometryList.geometries[0].data.vertexInformation[i].x;
+		float y = clumps[0].geometryList.geometries[0].data.vertexInformation[i].y;
+		float z = clumps[0].geometryList.geometries[0].data.vertexInformation[i].z;
+		vec.push_back(Vec3<float>(x, y, z));
+	}
+	return vec;
+}
+
+std::vector<Vec3PlusFlag<int> >	RwDff::getFaceInformation() {
+	std::vector<Vec3PlusFlag<int> > vec;
+	for (int i = 0; i < this->clumps[0].geometryList.geometries[0].data.dataHeader.triangleCount; i++) {
+		int x = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex1;
+		int y = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex2;
+		int z = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex3;
+		int flags = clumps[0].geometryList.geometries[0].data.faceInformation[i].flags;
+
+		vec.push_back(Vec3PlusFlag<int>(x, y, z, flags));
+	}
+	return vec;
+}
+
 void RwDff::readSectionHeader(RwSectionHeader &sh, uint_8* buffer, size_t &ptr_pos) {
 	sh.sectionType = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
 	sh.sectionSize = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);

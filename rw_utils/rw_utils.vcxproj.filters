@@ -54,6 +54,9 @@
     <ClInclude Include="rw_core.h">
       <Filter>Header Files\RenderWare</Filter>
     </ClInclude>
+    <ClInclude Include="basic_types.h">
+      <Filter>Header Files\RenderWare</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

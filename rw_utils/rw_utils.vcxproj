@@ -145,6 +145,7 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basic_types.h" />
     <ClInclude Include="ConsoleColors.h" />
     <ClInclude Include="rw_core.h" />
     <ClInclude Include="rw_file.h" />
