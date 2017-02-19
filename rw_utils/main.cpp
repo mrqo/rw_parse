@@ -6,13 +6,13 @@
 
 int main()
 {
-	RwDff *LODroad15 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\Debug\\dff\\LODroad15.dff");
+	RwDff *LODroad15 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\Debug\\dff\\LODroad15.dff");
 	LODroad15->openFile();
 	LODroad15->loadFile();
 	LODroad15->serialize();
 	LODroad15->printFileStructure();
 
-	RwDff *newramp2 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\Debug\\dff\\newramp2.dff");
+	RwDff *newramp2 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\Debug\\dff\\newramp2.dff");
 	newramp2->openFile();
 	newramp2->loadFile();
 	newramp2->serialize();

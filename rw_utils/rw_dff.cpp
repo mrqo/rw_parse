@@ -112,10 +112,30 @@ void RwDff::printFileStructure() {
 		RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].data, ++level);
 		RwUtils::printGeometryData(this->clumps[0].geometryList.geometries[i].data, level);
 		RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList, level);
-		RwUtils::printVoidStructure(level);
+		RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.data, ++level);
+		RwUtils::printMaterialListData(this->clumps[0].geometryList.geometries[i].materialList.data, level);
+
+		for (int j = 0; j < this->clumps[0].geometryList.geometries[i].materialList.data.materialCount; j++) {
+			RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.materials[j], level);
+			RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.materials[j].data, ++level);
+			RwUtils::printMaterialData(this->clumps[0].geometryList.geometries[i].materialList.materials[j].data, level);
+			for (int k = 0; k < this->clumps[0].geometryList.geometries[i].materialList.materials[j].data.textureCount; k++) {
+				RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k], level);
+				RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k].data, ++level);
+				RwUtils::printTextureData(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k].data, level);
+				RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k].textureName, level);
+				RwUtils::printStringData(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k].textureName, level);
+				RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k].textureAlphaName, level);
+				RwUtils::printStringData(this->clumps[0].geometryList.geometries[i].materialList.materials[j].textures[k].textureAlphaName, level);
+				level--;
+			}
+			level--;
+		}
 		RwUtils::printHeaderInfo(this->clumps[0].geometryList.geometries[i].extension, level);
-		RwUtils::printVoidStructure(level--);
+		RwUtils::printVoidStructure(level);
+		level--;
 	}
+	level--;
 
 	RwUtils::printHeaderInfo(this->clumps[0].atomic, --level);
 	RwUtils::printVoidStructure(level);

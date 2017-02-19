@@ -170,6 +170,12 @@ void RwUtils::printHexVariable(char* varName, T var, size_t levelSpacing) {
 	std::cout << varName << " = " << std::hex << "0x" << var << std::dec << "\n";
 }
 
+void RwUtils::printStringVariable(char* varName, std::string var, size_t levelSpacing) {
+	printLevelSpacing(levelSpacing);
+	printVarType<std::string>();
+	std::cout << varName << " = " << var << "\n";
+}
+
 template<typename ...T>
 void RwUtils::printArrayElement(char* arrLabel, size_t elementNum, size_t levelSpacing, T... args) {
 	printLevelSpacing(levelSpacing);
@@ -308,13 +314,41 @@ void RwUtils::printGeometryData(RwGeometryData &gd, int level) {
 }
 
 void RwUtils::printMaterialListData(RwMaterialListData &mld, int level) {
-
+	printBracet(ioOPEN, level++);
+	printDecVariable("materialCount", mld.materialCount, level);
+	printLevelSpacing(level);
+	std::cout << "[arrayOfUnks]:\n";
+	for (int i = 0; i < mld.materialCount; i++) {
+		printLevelSpacing(level + 1);
+		std::cout << "[" << rw_io_colors::blue << i << rw_io_colors::white << "] = " << (int)mld.arrayOfUnks[i] << "\n";
+	}
+	printBracet(ioCLOSE, --level);
 }
 
 void RwUtils::printMaterialData(RwMaterialData &md, int level) {
-
+	printBracet(ioOPEN, level++);
+	printDecVariable("unk1", md.unk1, level);
+	printDecVariable("R", (short)md.R, level);
+	printDecVariable("G", (short)md.G, level);
+	printDecVariable("B", (short)md.B, level);
+	printDecVariable("A", (short)md.A, level);
+	printDecVariable("unk2", md.unk2, level);
+	printDecVariable("textureCount", md.textureCount, level);
+	printDecVariable("unkPosX", md.unkPosX, level);
+	printDecVariable("unkPosY", md.unkPosY, level);
+	printDecVariable("unkPosZ", md.unkPosZ, level);
+	printBracet(ioCLOSE, --level);
 }
 
 void RwUtils::printTextureData(RwTextureData &td, int level) {
+	printBracet(ioOPEN, level++);
+	printHexVariable("textureFilterModeFlags", td.textureFilterModeFlags, level);
+	printDecVariable("unk", td.unk, level);
+	printBracet(ioCLOSE, --level);
+}
 
+void RwUtils::printStringData(RwString &str, int level) {
+	printBracet(ioOPEN, level++);
+	printStringVariable("text", str.text, level);
+	printBracet(ioCLOSE, --level);
 }

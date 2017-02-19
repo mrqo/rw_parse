@@ -49,7 +49,7 @@ public:
 	static void printHexVariable(char* varName, T var, size_t spacingLevel = 0);
 	template<typename ...T>
 	static void printArrayElement(char* arrLabel, size_t elementNum, size_t spacingLevel, T... args);
-
+	static void printStringVariable(char* varName, std::string var, size_t spacingLevel = 0);
 	static void printFileInfo(RwFile *rwFile);
 	static void printHeaderInfo(RwSectionHeader &header, int level);
 	static void printClumpDataStruct(RwClumpData &clumpDataStruct, int level);
@@ -59,6 +59,8 @@ public:
 	static void printMaterialListData(RwMaterialListData &mld, int level);
 	static void printMaterialData(RwMaterialData &md, int level);
 	static void printTextureData(RwTextureData &td, int level);
+	static void printStringData(RwString &str, int level);
+
 	/* --- Other functions --- */
 	static uint_32		unpackLibraryVersion(uint_32 libid);
 	static std::string	getSectionTypeName(uint_32 type);

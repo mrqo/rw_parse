@@ -155,7 +155,7 @@ public:
 	uint_8 R;
 	uint_8 G;
 	uint_8 B;
-	uint_8 A; // should it be like this???
+	uint_8 A;
 	uint_32 unk2;
 	uint_32 textureCount;
 	float_32 unkPosX;
