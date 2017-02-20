@@ -155,13 +155,58 @@ std::vector<Vec3<float> >	RwDff::getVertexInformation() {
 std::vector<Vec3PlusFlag<int> >	RwDff::getFaceInformation() {
 	std::vector<Vec3PlusFlag<int> > vec;
 	for (int i = 0; i < this->clumps[0].geometryList.geometries[0].data.dataHeader.triangleCount; i++) {
-		int x = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex1;
-		int y = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex2;
-		int z = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex3;
+		int v1 = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex1;
+		int v2 = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex2;
+		int v3 = clumps[0].geometryList.geometries[0].data.faceInformation[i].vertex3;
 		int flags = clumps[0].geometryList.geometries[0].data.faceInformation[i].flags;
-
-		vec.push_back(Vec3PlusFlag<int>(x, y, z, flags));
+		vec.push_back(Vec3PlusFlag<int>(v1, v2, v3, flags));
 	}
+	return vec;
+}
+
+std::vector<Vec2<int> > RwDff::getTextureMappingInformation() {
+	std::vector<Vec2<int> > vec;
+	
+	if (clumps[0].geometryList.geometries[0].data.dataHeader.flags & rwOBJECT_VERTEX_TEXTURED) {
+		for (int i = 0; i < this->clumps[0].geometryList.geometries[0].data.dataHeader.vertexCount; i++) {
+			int u = clumps[0].geometryList.geometries[0].data.textureMappingInformation[i].u;
+			int v = clumps[0].geometryList.geometries[0].data.textureMappingInformation[i].v;
+			vec.push_back(Vec2<int>(u, v));
+		}
+	}
+	
+	return vec;
+}
+
+std::vector<Vec3<float> > RwDff::getNormalInformation() {
+	std::vector<Vec3<float> > vec;
+
+	if (clumps[0].geometryList.geometries[0].data.dataHeader.flags & rwOBJECT_VERTEX_NORMALS) {
+		for (int i = 0; i < this->clumps[0].geometryList.geometries[0].data.dataHeader.vertexCount; i++) {
+			float x = clumps[0].geometryList.geometries[0].data.normalInformation[i].x;
+			float y = clumps[0].geometryList.geometries[0].data.normalInformation[i].y;
+			float z = clumps[0].geometryList.geometries[0].data.normalInformation[i].z;
+			vec.push_back(Vec3<float>(x, y, z));
+		}
+	}
+	
+	return vec;
+}
+
+std::vector<ColorRGBA> RwDff::getColorInformation() {
+	std::vector<ColorRGBA> vec;
+
+	if (clumps[0].geometryList.geometries[0].data.dataHeader.flags & rwOBJECT_VERTEX_PRELIT) {
+		for (int i = 0; i < this->clumps[0].geometryList.geometries[0].data.dataHeader.vertexCount; i++) {
+			ColorRGBA color;
+			color.R = clumps[0].geometryList.geometries[0].data.colorInformation[i].red;
+			color.G = clumps[0].geometryList.geometries[0].data.colorInformation[i].green;
+			color.B = clumps[0].geometryList.geometries[0].data.colorInformation[i].blue;
+			color.A = clumps[0].geometryList.geometries[0].data.colorInformation[i].alpha;
+			vec.push_back(color);
+		}
+	}
+
 	return vec;
 }
 

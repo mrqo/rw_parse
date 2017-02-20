@@ -292,6 +292,7 @@ void RwUtils::printGeometryData(RwGeometryData &gd, int level) {
 	printDecVariable("hasPosition", gd.nonameInfo.hasPosition, level);
 	printDecVariable("hasNormals", gd.nonameInfo.hasNormals, level);
 
+	std::cout << "\n";
 	printLevelSpacing(level);
 	std::cout << "[vertexInformation]:\n";
 
