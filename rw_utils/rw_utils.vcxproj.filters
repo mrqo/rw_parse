@@ -22,6 +22,15 @@
     <Filter Include="Source Files\RenderWare">
       <UniqueIdentifier>{23bdc151-4d1b-4250-b52e-98535ab50a50}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\RWDEngine">
+      <UniqueIdentifier>{acd061f7-e132-4c4a-9ec0-8f65aa37209c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\RWDEngine">
+      <UniqueIdentifier>{5c5184f2-bc4b-45c6-81a1-b539aa14196e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{86027af3-3703-4258-b32a-63fdfa2d80c6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -57,6 +66,21 @@
     <ClInclude Include="basic_types.h">
       <Filter>Header Files\RenderWare</Filter>
     </ClInclude>
+    <ClInclude Include="rwde_window.h">
+      <Filter>Header Files\RWDEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="rwde_mesh.h">
+      <Filter>Header Files\RWDEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="rwde_camera.h">
+      <Filter>Header Files\RWDEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="rwde_shader.h">
+      <Filter>Header Files\RWDEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="rwde_transform.h">
+      <Filter>Header Files\RWDEngine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -74,5 +98,22 @@
     <ClCompile Include="rw_utils.cpp">
       <Filter>Source Files\RenderWare</Filter>
     </ClCompile>
+    <ClCompile Include="rwde_window.cpp">
+      <Filter>Source Files\RWDEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="rwde_mesh.cpp">
+      <Filter>Source Files\RWDEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="rwde_shader.cpp">
+      <Filter>Source Files\RWDEngine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="basicShader.fs">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="basicShader.vs">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>
