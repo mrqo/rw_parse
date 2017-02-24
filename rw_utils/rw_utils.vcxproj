@@ -158,6 +158,8 @@
     <ClInclude Include="rw_file.h" />
     <ClInclude Include="rw_dff.h" />
     <ClInclude Include="rw_dff_structure.h" />
+    <ClInclude Include="rw_ide.h" />
+    <ClInclude Include="rw_ide_structure.h" />
     <ClInclude Include="rw_types.h" />
     <ClInclude Include="rw_utils.h" />
     <ClInclude Include="stdafx.h" />

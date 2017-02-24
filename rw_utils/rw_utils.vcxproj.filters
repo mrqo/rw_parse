@@ -81,6 +81,12 @@
     <ClInclude Include="rwde_transform.h">
       <Filter>Header Files\RWDEngine</Filter>
     </ClInclude>
+    <ClInclude Include="rw_ide.h">
+      <Filter>Header Files\RenderWare</Filter>
+    </ClInclude>
+    <ClInclude Include="rw_ide_structure.h">
+      <Filter>Header Files\RenderWare</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

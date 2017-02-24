@@ -30,7 +30,7 @@ int main(int argc, char** argv)
 	washbuild033->openFile();
 	washbuild033->loadFile();
 	washbuild033->serialize();
-	washbuild033->printFileStructure();
+	//washbuild033->printFileStructure();
 
 	//RwDff *player = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\player.dff");
 	//player->openFile();
