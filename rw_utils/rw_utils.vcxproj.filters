@@ -87,6 +87,9 @@
     <ClInclude Include="rw_ide_structure.h">
       <Filter>Header Files\RenderWare</Filter>
     </ClInclude>
+    <ClInclude Include="rw_txd_structure.h">
+      <Filter>Header Files\RenderWare</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

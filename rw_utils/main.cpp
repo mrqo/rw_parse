@@ -32,6 +32,12 @@ int main(int argc, char** argv)
 	washbuild033->serialize();
 	//washbuild033->printFileStructure();
 
+	RwDff *dt_bowlsign = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\dt_bowlsign.dff");
+	dt_bowlsign->openFile();
+	dt_bowlsign->loadFile();
+	dt_bowlsign->serialize();
+	dt_bowlsign->printFileStructure();
+
 	//RwDff *player = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\player.dff");
 	//player->openFile();
 	//player->loadFile();
@@ -43,7 +49,7 @@ int main(int argc, char** argv)
 	RWDE::Camera camera(glm::vec3(0.0f, 0.0f, -40.0f), 70.0f, (float)SCREEN_WIDTH / SCREEN_HEIGHT, 0.1f, 500.0f);
 	Shader shader("./basicShader");
 	Transform transform;
-	RWDE::Mesh *mesh = new RWDE::Mesh(washbuild033);
+	RWDE::Mesh *mesh = new RWDE::Mesh(dt_bowlsign);
 
 	SDL_Event e;
 	bool isRunning = true;
@@ -60,13 +66,12 @@ int main(int argc, char** argv)
 		transform.GetRot()->y = counter;
 		transform.GetRot()->z = counter;
 		transform.GetRot()->x = counter;
-		wnd->clear(0.0f, 0.3f, 0.9f, 1.0f);
-		
-
+		//wnd->clear(0.0f, 0.3f, 0.9f, 1.0f);
+		wnd->clear(115.0f / 255, 132.0f / 255, 150.0f / 255, 1.0f);
 		shader.Bind();
 		shader.Update(transform, camera);
+		
 		mesh->draw();
-
 		
 		wnd->swapBuffers();
 		SDL_Delay(1);
@@ -76,6 +81,7 @@ int main(int argc, char** argv)
 	delete LODroad15;
 	delete newramp2;
 	delete washbuild033;
+	delete dt_bowlsign;
 	//delete player;
     return 0;
 }

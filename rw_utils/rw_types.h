@@ -9,6 +9,7 @@
 
 #include <Windows.h>
 
+typedef CHAR	uchar_4;
 typedef BYTE	uint_8;		// 1 BYTE
 typedef WORD	uint_16;	// 2 BYTEs (WORD)
 typedef DWORD32	uint_32;	// 4 BYTEs (DWORD)

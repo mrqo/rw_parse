@@ -86,6 +86,10 @@ std::string RwUtils::getSectionTypeName(uint_32 type) {
 		return "rwCLUMP";
 	case rwATOMIC:
 		return "rwATOMIC";
+	case rwTEXTURENATIVE:
+		return "rwTEXTURENATIVE";
+	case rwTEXTUREDICTIONARY:
+		return "rwTEXTUREDICTIONARY";
 	case rwGEOMETRYLIST:
 		return "rwGEOMETRYLIST";
 	case rwMATERIALSPLIT:

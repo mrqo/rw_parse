@@ -11,22 +11,6 @@
 #include "rw_types.h"
 #include "rw_core.h"
 
-enum RwSectionType : uint_32 {
-	rwDATA			= 1,
-	rwSTRING		= 2,
-	rwEXTENSION		= 3,
-	rwTEXTURE		= 6,
-	rwMATERIAL		= 7,
-	rwMATERIALLIST	= 8,
-	rwFRAMELIST		= 14,
-	rwGEOMETRY		= 15,
-	rwCLUMP			= 16,
-	rwATOMIC		= 20,
-	rwGEOMETRYLIST	= 26,
-	rwMATERIALSPLIT = 1294,
-	rwFRAME			= 39056126
-};
-
 enum RwGeometryDataFlags : uint_16 {
 	rwOBJECT_VERTEX_TRISTRIP				= 0x01,
 	rwOBJECT_VERTEX_POS						= 0x02,
@@ -37,15 +21,6 @@ enum RwGeometryDataFlags : uint_16 {
 	rwOBJECT_VERTEX_MODULATE_MATERIAL_COLOR = 0x40,
 	rwOBJECT_VERTEX_TEXTURED_2				= 0x80
 };
-
-// SectionHeader
-class RwSectionHeader {
-public:
-	uint_32 sectionType;
-	uint_32 sectionSize;
-	uint_32 versionNumber;
-};
-// --- 
 
 // Section: Frame List
 class RwFrameListData : public RwSectionHeader {

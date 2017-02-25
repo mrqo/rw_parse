@@ -16,4 +16,31 @@ enum RwFileVersion : uint_32 {
 	rwVERSION_3603		= 0x1803FFFF	// GTASA
 };
 
+enum RwSectionType : uint_32 {
+	rwDATA				= 0x0001,		// 1
+	rwSTRING			= 0x0002,		// 2
+	rwEXTENSION			= 0x0003,		// 3
+	rwTEXTURE			= 0x0006,		// 6
+	rwMATERIAL			= 0x0007,		// 7
+	rwMATERIALLIST		= 0x0008,		// 8
+	rwFRAMELIST			= 0x000E,		// 14
+	rwGEOMETRY			= 0x000F,		// 15
+	rwCLUMP				= 0x0010,		// 16
+	rwATOMIC			= 0x0014,		// 20
+	rwTEXTURENATIVE		= 0x0015,		// 21
+	rwTEXTUREDICTIONARY = 0x0016,		// 22
+	rwGEOMETRYLIST		= 0x001A,		// 26
+	rwMATERIALSPLIT		= 1294,			// 1294
+	rwFRAME				= 0x0253F2FE	// 39056126		
+};
+
+// SectionHeader
+class RwSectionHeader {
+public:
+	uint_32 sectionType;
+	uint_32 sectionSize;
+	uint_32 versionNumber;
+};
+// --- 
+
 #endif

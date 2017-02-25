@@ -6,6 +6,16 @@ RWDE::Window::Window(char* wndName, int windowHeight, int windowWidth) {
 	this->windowHeight = windowHeight;
 	this->windowWidth = windowWidth;
 	this->wndName = wndName;
+
+	const int SCALE_FACTOR = 2;
+	for (int j = -10; j < 10; j++) {
+		for (int k = -10; k < 10; k++) {
+			baseMatrix[0][j + 10][k + 10] = glm::vec3(j * SCALE_FACTOR, k * SCALE_FACTOR, 0);
+			baseMatrix[1][j + 10][k + 10] = glm::vec3((j + 1) * SCALE_FACTOR, k * SCALE_FACTOR, 0);
+			baseMatrix[2][j + 10][k + 10] = glm::vec3((j + 1) * SCALE_FACTOR, (k + 1) * SCALE_FACTOR, 0);
+			baseMatrix[3][j + 10][k + 10] = glm::vec3(j * SCALE_FACTOR, (k + 1) * SCALE_FACTOR, 0);
+		}
+	}
 }
 
 RWDE::Window::~Window() {
@@ -58,24 +68,57 @@ void RWDE::Window::clear(float r, float g, float b, float a) {
 	glClearColor(r, g, b, a);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	//glMatrixMode (GL_MODELVIEW); 
-	//glPushMatrix (); 
-	//glLoadIdentity (); 
-	//glMatrixMode (GL_PROJECTION); 
-	//glPushMatrix ();
-	//glLoadIdentity ();
+	//glMatrixMode(GL_PROJECTION);
+	//glPushMatrix();
+	//glLoadIdentity();
+	//int w = 640;
+	//int h = 480;
+	////gluOrtho2D(0, w, h, 0);
+	//glOrtho(0, w, h, 0, -1.0, 10.0);
+
+	//glMatrixMode(GL_MODELVIEW);
+	//glPushMatrix();
+	//glLoadIdentity();
+	//glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+
 	//glBegin(GL_QUADS);
-	//glNormal3f(0.0f, 0.0f, 1.0f);
-	//glColor3f(1.0f, 0.0f, 0.0f); 
-	//glVertex3i(-1, -1, -1);
-	//glVertex3i(1, -1, -1);
-	//glColor3f(0.0f, 1.0f, 0.0f);
-	//glVertex3i(1, 1, -1);
-	//glVertex3i(-1, 1, -1);
+	//glColor3b(255, 0, 0);
+	//glVertex2f(0.0f, 0.0f);
+	//glVertex2f(10.0f, 0.0f);
+	//glVertex2f(10.0f, 10.0f);
+	//glVertex2f(0.0, 10.0f);
 	//glEnd();
-	//glPopMatrix (); 
-	//glMatrixMode (GL_MODELVIEW);
-	//glPopMatrix ();
+
+	//glMatrixMode(GL_PROJECTION);
+	//glPopMatrix();
+	//glMatrixMode(GL_MODELVIEW);	
+	//glPopMatrix();
+	
+	drawMatrixField();
+}
+
+void RWDE::Window::drawMatrixField() {
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+
+	for (int i = 0; i < 20; i++) {
+		for (int j = 0; j < 20; j++) {
+			glBegin(GL_LINE_LOOP);
+			glColor3f(1.0f, 0.0f, 0.0f);
+			for (int k = 0; k < 4; k++) {
+				glVertex3i(baseMatrix[k][i][j].x, baseMatrix[k][i][j].y, baseMatrix[k][i][j].z);
+			}
+			glEnd();
+		}
+	}
+	
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 }
 
 void RWDE::Window::swapBuffers() {
