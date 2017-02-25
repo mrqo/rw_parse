@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 	dt_bowlsign->openFile();
 	dt_bowlsign->loadFile();
 	dt_bowlsign->serialize();
-	dt_bowlsign->printFileStructure();
+	//dt_bowlsign->printFileStructure();
 
 	//RwDff *player = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\player.dff");
 	//player->openFile();
@@ -51,6 +51,8 @@ int main(int argc, char** argv)
 	Transform transform;
 	RWDE::Mesh *mesh = new RWDE::Mesh(dt_bowlsign);
 
+	transform.GetRot()->x = -2.f;
+
 	SDL_Event e;
 	bool isRunning = true;
 
@@ -63,9 +65,8 @@ int main(int argc, char** argv)
 			}
 		}
 
-		transform.GetRot()->y = counter;
 		transform.GetRot()->z = counter;
-		transform.GetRot()->x = counter;
+		//std::cout << "transform x/y/z " << transform.GetRot()->x << " " << transform.GetRot()->y << " " << transform.GetRot()->z << std::endl;
 		//wnd->clear(0.0f, 0.3f, 0.9f, 1.0f);
 		wnd->clear(115.0f / 255, 132.0f / 255, 150.0f / 255, 1.0f);
 		shader.Bind();
