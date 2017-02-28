@@ -38,3 +38,9 @@ size_t RwFile::getFileSize() {
 std::string RwFile::getFileName() {
 	return this->fileName;
 }
+
+void RwFile::readSectionHeader(RwSectionHeader &sh, uint_8* buffer, size_t& ptr_pos) {
+	sh.sectionType = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
+	sh.sectionSize = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
+	sh.versionNumber = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
+}

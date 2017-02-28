@@ -36,7 +36,6 @@ private:
 	RwClump*		clumps;
 	
 	/* --- Reading functions --- */
-	void			readSectionHeader(RwSectionHeader &sh, uint_8* buffer, size_t &ptr_pos);
 	void			readFrameListData(RwFrameListData &frd, uint_8* buffer, size_t &ptr_pos);
 	void			readClumpData(RwClumpData &cd, uint_8* buffer, size_t &ptr_pos);
 	void			readGeometryListData(RwGeometryListData &gld, uint_8* buffer, size_t &ptr_pos);

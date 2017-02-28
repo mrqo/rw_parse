@@ -14,6 +14,8 @@
 #include <string>
 
 #include "rw_types.h"
+#include "rw_core.h"
+#include "rw_utils.h"
 
 class RwFile {
 public:
@@ -30,6 +32,8 @@ protected:
 	size_t			fileSize;
 	uint_8			*data;
 	FILE			*p_File;
+
+	void			readSectionHeader(RwSectionHeader &sh, uint_8* buffer, size_t& ptr_pos);
 };
 
 #endif

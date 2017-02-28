@@ -4,6 +4,8 @@
 #include "stdafx.h"
 
 #include "rw_dff.h"
+#include "rw_txd.h"
+
 #include "rwde_window.h"
 #include "rwde_mesh.h"
 #include "rwde_camera.h"
@@ -14,29 +16,35 @@ const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char** argv)
 {
-	RwDff *LODroad15 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\LODroad15.dff");
-	LODroad15->openFile();
-	LODroad15->loadFile();
-	LODroad15->serialize();
-	//LODroad15->printFileStructure();
+	//RwDff *LODroad15 = new RwDff("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\LODroad15.dff");
+	//LODroad15->openFile();
+	//LODroad15->loadFile();
+	//LODroad15->serialize();
+	////LODroad15->printFileStructure();
 
-	RwDff *newramp2 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\newramp2.dff");
-	newramp2->openFile();
-	newramp2->loadFile();
-	newramp2->serialize();
-	//newramp2->printFileStructure();
+	//RwDff *newramp2 = new RwDff("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\newramp2.dff");
+	//newramp2->openFile();
+	//newramp2->loadFile();
+	//newramp2->serialize();
+	////newramp2->printFileStructure();
 
-	RwDff *washbuild033 = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\washbuild033.dff");
-	washbuild033->openFile();
-	washbuild033->loadFile();
-	washbuild033->serialize();
-	//washbuild033->printFileStructure();
+	//RwDff *washbuild033 = new RwDff("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\washbuild033.dff");
+	//washbuild033->openFile();
+	//washbuild033->loadFile();
+	//washbuild033->serialize();
+	////washbuild033->printFileStructure();
 
-	RwDff *dt_bowlsign = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\dt_bowlsign.dff");
+	RwDff *dt_bowlsign = new RwDff("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\dt_bowlsign.dff");
 	dt_bowlsign->openFile();
 	dt_bowlsign->loadFile();
 	dt_bowlsign->serialize();
 	//dt_bowlsign->printFileStructure();
+
+	RwTxd *vgseland03_lvs = new RwTxd("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\vgseland03_lvs.txd");
+	vgseland03_lvs->openFile();
+	vgseland03_lvs->loadFile();
+	vgseland03_lvs->serialize();
+	vgseland03_lvs->printFileStructure();
 
 	//RwDff *player = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\player.dff");
 	//player->openFile();
@@ -68,7 +76,7 @@ int main(int argc, char** argv)
 		transform.GetRot()->z = counter;
 		//std::cout << "transform x/y/z " << transform.GetRot()->x << " " << transform.GetRot()->y << " " << transform.GetRot()->z << std::endl;
 		//wnd->clear(0.0f, 0.3f, 0.9f, 1.0f);
-		wnd->clear(115.0f / 255, 132.0f / 255, 150.0f / 255, 1.0f);
+		wnd->clear(115.0f / 255, 132.0f / 255, 180.0f / 255, 1.0f);
 		shader.Bind();
 		shader.Update(transform, camera);
 		
@@ -79,9 +87,9 @@ int main(int argc, char** argv)
 		counter += 0.001f;
 	}
 	system("PAUSE");
-	delete LODroad15;
-	delete newramp2;
-	delete washbuild033;
+	//delete LODroad15;
+	//delete newramp2;
+	//delete washbuild033;
 	delete dt_bowlsign;
 	//delete player;
     return 0;

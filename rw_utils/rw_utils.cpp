@@ -7,6 +7,7 @@
 
 #include "rw_utils.h"
 #include "rw_dff_structure.h"
+#include "rw_txd_structure.h"
 
 /* Extracts version info from given DWORD */
 uint_32 RwUtils::unpackLibraryVersion(uint_32 libid) {
@@ -357,4 +358,15 @@ void RwUtils::printStringData(RwString &str, int level) {
 	char* text = (char*)(str.text.c_str());
 	printStringVariable("text", text, level);
 	printBracet(ioCLOSE, --level);
+}
+
+void RwUtils::printTextureDictionaryData(RwTextureDictionaryData& tdd, int level) {
+	printBracet(ioOPEN, level++);
+	printDecVariable("textureCount", tdd.rwNewer.textureCount, level);
+	printDecVariable("deviceId", tdd.rwNewer.deviceId, level);
+	printBracet(ioCLOSE, --level);
+}
+
+void RwUtils::printTextureNativeData(RwTextureNativeData& tnd, int level) {
+
 }

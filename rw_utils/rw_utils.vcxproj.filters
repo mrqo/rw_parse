@@ -90,6 +90,9 @@
     <ClInclude Include="rw_txd_structure.h">
       <Filter>Header Files\RenderWare</Filter>
     </ClInclude>
+    <ClInclude Include="rw_txd.h">
+      <Filter>Header Files\RenderWare</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="rwde_shader.cpp">
       <Filter>Source Files\RWDEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="rw_txd.cpp">
+      <Filter>Source Files\RenderWare</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

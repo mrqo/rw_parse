@@ -19,6 +19,9 @@
 
 #include "rw_file.h"
 #include "rw_dff_structure.h"
+#include "rw_txd_structure.h"
+
+class RwFile;
 
 enum IOBracets {
 	ioOPEN = 1,
@@ -35,7 +38,7 @@ public:
 	static uint_8*		readData(uint_8* buffer, size_t &ptr_pos, size_t dataSize);
 	static std::string	readString(uint_8* buffer, size_t &ptr_pos, size_t dataSize);
 
-	/* --- Printing functions --- */
+	/* --- General purpose printing functions --- */
 	static void printLevelSpacing(int level);
 	static void printVoidStructure(int level);
 	static void printPointerPosition(int ptr_pos);
@@ -48,10 +51,13 @@ public:
 	template<typename T>
 	static void printHexVariable(char* varName, T var, size_t spacingLevel = 0);
 	template<typename ...T>
+
 	static void printArrayElement(char* arrLabel, size_t elementNum, size_t spacingLevel, T... args);
 	static void printStringVariable(char* varName, std::string var, size_t spacingLevel = 0);
 	static void printFileInfo(RwFile *rwFile);
 	static void printHeaderInfo(RwSectionHeader &header, int level);
+
+	/* --- DFF printing functions --- */
 	static void printClumpDataStruct(RwClumpData &clumpDataStruct, int level);
 	static void printFrameListData(RwFrameListData &frameListData, int level);
 	static void printGeometryListData(RwGeometryListData &gld, int level);
@@ -60,6 +66,11 @@ public:
 	static void printMaterialData(RwMaterialData &md, int level);
 	static void printTextureData(RwTextureData &td, int level);
 	static void printStringData(RwString &str, int level);
+
+	/* --- TXD printing functions --- */
+	static void printTextureDictionaryData(RwTextureDictionaryData& tdd, int level);
+	static void printTextureNativeData(RwTextureNativeData& tnd, int level);
+
 
 	/* --- Other functions --- */
 	static uint_32		unpackLibraryVersion(uint_32 libid);

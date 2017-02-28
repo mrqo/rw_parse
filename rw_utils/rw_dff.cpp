@@ -210,12 +210,6 @@ std::vector<ColorRGBA> RwDff::getColorInformation() {
 	return vec;
 }
 
-void RwDff::readSectionHeader(RwSectionHeader &sh, uint_8* buffer, size_t &ptr_pos) {
-	sh.sectionType = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
-	sh.sectionSize = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
-	sh.versionNumber = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
-}
-
 void RwDff::readFrameListData(RwFrameListData &frd, uint_8* buffer, size_t &ptr_pos) {
 	frd.frameCount = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
 	using FIChunk = std::remove_reference<decltype(*frd.frameInformation)>::type;

@@ -102,13 +102,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\HP\Desktop\rw-parse\rw_parse\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>opengl32.lib;glu32.lib;SDL\SDL2.lib;SDL\SDL2main.lib;glew\glew32s.lib;glew\glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>C:\Users\HP\Desktop\rw-parse\rw_parse\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)\lib\x64\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,6 +160,7 @@
     <ClInclude Include="rw_dff_structure.h" />
     <ClInclude Include="rw_ide.h" />
     <ClInclude Include="rw_ide_structure.h" />
+    <ClInclude Include="rw_txd.h" />
     <ClInclude Include="rw_txd_structure.h" />
     <ClInclude Include="rw_types.h" />
     <ClInclude Include="rw_utils.h" />
@@ -174,6 +175,7 @@
     <ClCompile Include="rwde_shader.cpp" />
     <ClCompile Include="rw_dff.cpp" />
     <ClCompile Include="rw_file.cpp" />
+    <ClCompile Include="rw_txd.cpp" />
     <ClCompile Include="rw_utils.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -85,9 +85,14 @@ public:
 
 };
 
+class RwTextureNativeExtension : public RwSectionHeader {
+public:
+};
+
 class RwTextureNative : public RwSectionHeader {
 public:
-	RwTextureNativeData data;
+	RwTextureNativeData			data;
+	RwTextureNativeExtension	extension;
 };
 
 class RwTextureDictionaryData : public RwSectionHeader {
@@ -96,18 +101,23 @@ public:
 		struct {
 			uint_16 textureCount;
 			uint_16 deviceId;		// 1 for D3D8, 2 for D3D9, 6 for PlayStation 2, 8 for XBOX
-		} RwNewer;
+		} rwNewer;
 
 		struct {
 			uint_32 textureCount;
-		} RwOlder;
+		} rwOlder;
 	};
+};
+
+class RwTextureDictionaryExtension : public RwSectionHeader {
+public:
 };
 
 class RwTextureDictionary : public RwSectionHeader {
 public:
-	RwTextureDictionaryData data;
-	RwTextureNative*		textures;
+	RwTextureDictionaryData			data;
+	RwTextureNative*				textures;
+	RwTextureDictionaryExtension	extension;
 };
 
 #endif
