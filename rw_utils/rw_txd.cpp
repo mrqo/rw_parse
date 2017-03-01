@@ -19,8 +19,9 @@ void RwTxd::serialize() { // implemented for SA PC
 	for (int i = 0; i < this->texDictionary.data.rwNewer.textureCount; i++) {
 		readSectionHeader(this->texDictionary.textures[i], this->data, ptr_pos);
 		readSectionHeader(this->texDictionary.textures[i].data, this->data, ptr_pos);
+		size_t offset = ptr_pos;
 		readTextureNativeData(this->texDictionary.textures[i].data, this->data, ptr_pos);
-		ptr_pos += this->texDictionary.textures[i].data.sectionSize;
+		ptr_pos = offset + this->texDictionary.textures[i].data.sectionSize;
 
 		readSectionHeader(this->texDictionary.textures[i].extension, this->data, ptr_pos);
 		ptr_pos += this->texDictionary.textures[i].extension.sectionSize;
@@ -41,7 +42,7 @@ void RwTxd::printFileStructure() {
 		RwUtils::printHeaderInfo(this->texDictionary.textures[i], level);
 
 		RwUtils::printHeaderInfo(this->texDictionary.textures[i].data, level + 1);
-		RwUtils::printVoidStructure(level + 1);
+		RwUtils::printTextureNativeData(this->texDictionary.textures[i].data, level + 1);
 		RwUtils::printHeaderInfo(this->texDictionary.textures[i].extension, level + 1);
 		RwUtils::printVoidStructure(level + 1);
 	}
@@ -60,22 +61,28 @@ void RwTxd::readTextureNativeData(RwTextureNativeData& tnd, uint_8* buffer, size
 	tnd.textureFormat.platformId = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
 	tnd.textureFormat.filterMode = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
 
-	// Read to onsse byte and distribute it among two variables
-	tnd.textureFormat.uAddressing = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
-	tnd.textureFormat.vAddressing = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	// I don't know if it is the right order
+	uint_8 uvAddressing = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.textureFormat.uAddressing = (uvAddressing & ((1 << 7) | (1 << 6) | (1 << 5) | (1 << 4))) >> 4;
+	tnd.textureFormat.vAddressing = uvAddressing & ((1 << 3) | (1 << 3) | (1 << 1) | (1 << 0));
 	
 	tnd.textureFormat.pad = RwUtils::readWordFromArrayLE(buffer, ptr_pos);
 
-	tnd.textureFormat.textureName = RwUtils::readString(buffer, ptr_pos, 32);
-	tnd.textureFormat.textureAlphaName = RwUtils::readString(buffer, ptr_pos, 32);
+	strcpy(tnd.textureFormat.name, (char*)RwUtils::readString(buffer, ptr_pos, 32).c_str());
+	strcpy(tnd.textureFormat.maskName, (char*)RwUtils::readString(buffer, ptr_pos, 32).c_str());
 
 	tnd.rasterFormat.rasterFormat = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
 	tnd.rasterFormat.d3dFormat = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
-	tnd.rasterFormat.width = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
-	tnd.rasterFormat.height = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.width = RwUtils::readWordFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.height = RwUtils::readWordFromArrayLE(buffer, ptr_pos);
 	tnd.rasterFormat.depth = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
 	tnd.rasterFormat.numLevels = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
 	tnd.rasterFormat.rasterType = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
 
-	// Read byte and distribute it among smaller vars
+	uint_8 flags = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.alpha = (flags & (1 << 7)) >> 7;
+	tnd.rasterFormat.cubeTexture = (flags & (1 << 6)) >> 6;
+	tnd.rasterFormat.autoMipMaps = (flags & (1 << 5)) >> 5;
+	tnd.rasterFormat.isNotRwCompatible = (flags & (1 << 4)) >> 4;
+	tnd.rasterFormat.pad = flags & ((1 << 3) | (1 << 2) | (1 << 1) | (1));
 }

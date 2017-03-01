@@ -108,7 +108,7 @@ void RWDE::Window::drawMatrixField() {
 	for (int i = 0; i < 20; i++) {
 		for (int j = 0; j < 20; j++) {
 			glBegin(GL_LINE_LOOP);
-			glColor3f(1.0f, 0.0f, 0.0f);
+			glColor3f(0.0f, 0.0f, 0.0f);
 			for (int k = 0; k < 4; k++) {
 				glVertex3i(baseMatrix[k][i][j].x, baseMatrix[k][i][j].y, baseMatrix[k][i][j].z);
 			}

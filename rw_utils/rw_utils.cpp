@@ -58,10 +58,9 @@ uint_8* RwUtils::readData(uint_8* buffer, size_t &ptr_pos, size_t dataSize) {
 std::string RwUtils::readString(uint_8* buffer, size_t &ptr_pos, size_t dataSize) {
 	std::string s;
 
-
 	if (dataSize == 0) { // not tested, probably would need pad
-		while (buffer[ptr_pos++] != "\0") {
-			s += (char)buffer[i];
+		while ((char)buffer[ptr_pos] != '\0') {
+			s += (char)buffer[ptr_pos++];
 		}
 	}
 	else {
@@ -174,7 +173,7 @@ template<typename T>
 void RwUtils::printDecVariable(char* varName, T var, size_t levelSpacing) {
 	printLevelSpacing(levelSpacing);
 	printVarType<T>();
-	std::cout << varName << " = " << var << std::dec << "\n";
+	std::cout << varName << " = " << (long long)var << std::dec << "\n";
 }
 
 template<typename T>
@@ -377,5 +376,23 @@ void RwUtils::printTextureDictionaryData(RwTextureDictionaryData& tdd, int level
 }
 
 void RwUtils::printTextureNativeData(RwTextureNativeData& tnd, int level) {
-
+	printBracet(ioOPEN, level++);
+	printDecVariable("platformId", tnd.textureFormat.platformId, level);
+	printDecVariable("filterMode", tnd.textureFormat.filterMode, level);
+	printDecVariable("uAddressing", tnd.textureFormat.uAddressing, level);
+	printDecVariable("vAddressing", tnd.textureFormat.vAddressing, level);
+	printStringVariable("name", tnd.textureFormat.name, level);
+	printStringVariable("maskName", tnd.textureFormat.maskName, level);
+	printDecVariable("rasterFormat", tnd.rasterFormat.rasterFormat, level);
+	printDecVariable("d3dFormat", tnd.rasterFormat.d3dFormat, level);
+	printDecVariable("width", tnd.rasterFormat.width, level);
+	printDecVariable("height", tnd.rasterFormat.height, level);
+	printDecVariable("depth", tnd.rasterFormat.depth, level);
+	printDecVariable("numLevels", tnd.rasterFormat.numLevels, level);
+	printDecVariable("rasterType", tnd.rasterFormat.rasterType, level);
+	printDecVariable("alpha", tnd.rasterFormat.alpha, level);
+	printDecVariable("cubeTexture", tnd.rasterFormat.cubeTexture, level);
+	printDecVariable("autoMipMaps", tnd.rasterFormat.autoMipMaps, level);
+	printDecVariable("isNotRwCompatible", tnd.rasterFormat.isNotRwCompatible, level);
+	printBracet(ioCLOSE, --level);
 }

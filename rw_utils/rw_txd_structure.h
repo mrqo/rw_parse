@@ -61,11 +61,11 @@ public:
 
 		union {
 			uint_32 d3dFormat;	// SA in (D3DFORMAT)
-			uint_32 hasAlpha;		// III/VC
+			uint_32 hasAlpha;	// III/VC
 		};
 
-		uint_8	width;
-		uint_8	height;
+		uint_16	width;
+		uint_16	height;
 		uint_8 depth;
 		uint_8 numLevels;
 		uint_8 rasterType;
