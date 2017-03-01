@@ -52,33 +52,33 @@ public:
 		uint_8	uAddressing : 4;
 		uint_8	vAddressing : 4;
 		uint_16 pad;
-		uchar_4 name[32];
-		uchar_4 maskName[32];
+		uchar_8 name[32];
+		uchar_8 maskName[32];
 	} textureFormat;
 
 	struct {
 		uint_32 rasterFormat;
 
 		union {
-			//D3DFORMAT d3dFormat;	// SA
+			uint_32 d3dFormat;	// SA in (D3DFORMAT)
 			uint_32 hasAlpha;		// III/VC
 		};
 
 		uint_8	width;
 		uint_8	height;
-		uchar_4 depth;
-		uchar_4 numLevels;
-		uchar_4 rasterType;
+		uint_8 depth;
+		uint_8 numLevels;
+		uint_8 rasterType;
 
 		union {
-			uchar_4 compression;	// III/VC
+			uchar_8 compression;	// III/VC
 
 			struct {				// SA
-				uchar_4 alpha : 1;
-				uchar_4 cubeTexture : 1;
-				uchar_4 autoMipMaps : 1;
-				uchar_4 isNotRwCompatible : 1;
-				uchar_4 pad : 4;
+				uint_8 alpha : 1;
+				uint_8 cubeTexture : 1;
+				uint_8 autoMipMaps : 1;
+				uint_8 isNotRwCompatible : 1;
+				uint_8 pad : 4;
 			};
 		};
 	} rasterFormat;

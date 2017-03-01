@@ -59,9 +59,23 @@ void RwTxd::readTextureDictionaryData(RwTextureDictionaryData& tdd, uint_8* buff
 void RwTxd::readTextureNativeData(RwTextureNativeData& tnd, uint_8* buffer, size_t& ptr_pos) {
 	tnd.textureFormat.platformId = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
 	tnd.textureFormat.filterMode = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+
+	// Read to onsse byte and distribute it among two variables
 	tnd.textureFormat.uAddressing = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
 	tnd.textureFormat.vAddressing = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	
 	tnd.textureFormat.pad = RwUtils::readWordFromArrayLE(buffer, ptr_pos);
 
-	// TODO: Read rest of file; figure out how to read texture and alpha names
+	tnd.textureFormat.textureName = RwUtils::readString(buffer, ptr_pos, 32);
+	tnd.textureFormat.textureAlphaName = RwUtils::readString(buffer, ptr_pos, 32);
+
+	tnd.rasterFormat.rasterFormat = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.d3dFormat = RwUtils::readDwordFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.width = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.height = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.depth = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.numLevels = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+	tnd.rasterFormat.rasterType = RwUtils::readByteFromArrayLE(buffer, ptr_pos);
+
+	// Read byte and distribute it among smaller vars
 }

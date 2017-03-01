@@ -57,10 +57,19 @@ uint_8* RwUtils::readData(uint_8* buffer, size_t &ptr_pos, size_t dataSize) {
 
 std::string RwUtils::readString(uint_8* buffer, size_t &ptr_pos, size_t dataSize) {
 	std::string s;
-	for (size_t i = ptr_pos; i < ptr_pos + dataSize; i++) {
-		s += (char)buffer[i];
+
+
+	if (dataSize == 0) { // not tested, probably would need pad
+		while (buffer[ptr_pos++] != "\0") {
+			s += (char)buffer[i];
+		}
 	}
-	ptr_pos += dataSize;
+	else {
+		for (size_t i = ptr_pos; i < ptr_pos + dataSize; i++) {
+			s += (char)buffer[i];
+		}
+		ptr_pos += dataSize;
+	}
 	return s;
 }
 

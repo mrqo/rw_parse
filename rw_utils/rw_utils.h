@@ -36,7 +36,7 @@ public:
 	static uint_32		readDwordFromArrayLE(uint_8* buffer, size_t &ptr_pos);
 	static float_32		readFloatFromArrayLE(uint_8* buffer, size_t &ptr_pos);
 	static uint_8*		readData(uint_8* buffer, size_t &ptr_pos, size_t dataSize);
-	static std::string	readString(uint_8* buffer, size_t &ptr_pos, size_t dataSize);
+	static std::string	readString(uint_8* buffer, size_t &ptr_pos, size_t dataSize = 0);
 
 	/* --- General purpose printing functions --- */
 	static void printLevelSpacing(int level);
