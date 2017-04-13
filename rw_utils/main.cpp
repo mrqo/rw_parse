@@ -5,6 +5,7 @@
 
 #include "rw_dff.h"
 #include "rw_txd.h"
+#include "rw_ide.h"
 
 #include "rwde_window.h"
 #include "rwde_mesh.h"
@@ -16,6 +17,7 @@ const int SCREEN_HEIGHT = 480;
 
 int main(int argc, char** argv)
 {
+	std::string models_path = "G:\\Developer2\\rw_parse\\dff\\";
 	//RwDff *LODroad15 = new RwDff("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\LODroad15.dff");
 	//LODroad15->openFile();
 	//LODroad15->loadFile();
@@ -34,17 +36,22 @@ int main(int argc, char** argv)
 	//washbuild033->serialize();
 	////washbuild033->printFileStructure();
 
-	RwDff *dt_bowlsign = new RwDff("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\dt_bowlsign.dff");
+	RwDff *dt_bowlsign = new RwDff(models_path + "dt_bowlsign.dff");
 	dt_bowlsign->openFile();
 	dt_bowlsign->loadFile();
 	dt_bowlsign->serialize();
 	//dt_bowlsign->printFileStructure();
 
-	RwTxd *vgseland03_lvs = new RwTxd("C:\\Users\\MRQ\\Desktop\\rw_parse\\rw_parse\\dff\\vgseland03_lvs.txd");
+	RwTxd *vgseland03_lvs = new RwTxd(models_path + "vgseland03_lvs.txd");
 	vgseland03_lvs->openFile();
 	vgseland03_lvs->loadFile();
 	vgseland03_lvs->serialize();
 	vgseland03_lvs->printFileStructure();
+
+	RwIde *LAe = new RwIde(models_path + "LAe.ide");
+	LAe->openFile();
+	LAe->loadFile();
+	LAe->serialize();
 
 	//RwDff *player = new RwDff("C:\\Users\\HP\\Desktop\\rw-parse\\rw_parse\\dff\\player.dff");
 	//player->openFile();
@@ -92,6 +99,7 @@ int main(int argc, char** argv)
 	//delete washbuild033;
 	delete dt_bowlsign;
 	//delete player;
+	delete LAe;
     return 0;
 }
 

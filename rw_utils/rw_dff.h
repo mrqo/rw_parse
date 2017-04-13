@@ -25,6 +25,7 @@ class RwDff : public RwFile {
 public:
 	RwDff(std::string fileName);
 	~RwDff();
+	
 	void			serialize();
 	void			printFileStructure();
 	std::vector<Vec3<float> >		getVertexInformation();

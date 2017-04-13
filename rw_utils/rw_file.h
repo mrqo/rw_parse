@@ -22,8 +22,8 @@ public:
 	RwFile(std::string fileName);
 	~RwFile();
 
-	bool			openFile();
-	void			loadFile();
+	virtual bool	openFile();
+	virtual void	loadFile();
 	size_t			getFileSize();
 	std::string		getFileName();
 	

@@ -16,7 +16,7 @@ enum RwFileVersion : uint_32 {
 	rwVERSION_3603		= 0x1803FFFF	// GTASA
 };
 
-enum RwSectionType : uint_32 {
+enum RwBinSectionType : uint_32 {
 	rwDATA				= 0x0001,		// 1
 	rwSTRING			= 0x0002,		// 2
 	rwEXTENSION			= 0x0003,		// 3
@@ -32,6 +32,15 @@ enum RwSectionType : uint_32 {
 	rwGEOMETRYLIST		= 0x001A,		// 26
 	rwMATERIALSPLIT		= 1294,			// 1294
 	rwFRAME				= 0x0253F2FE	// 39056126		
+};
+
+enum RwIdeSectionType : uint_32 {
+	rwOBJS				= 0x0001,
+	rwTOBJ				= 0x0002,
+	rwPATH				= 0x0003,
+	rw2DFX				= 0x0004,
+	rwANIM				= 0x0005,
+	rwTXDP				= 0x0006
 };
 
 // SectionHeader
